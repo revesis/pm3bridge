@@ -34,7 +34,9 @@ host. It uses **podman or docker** automatically (override with
 `CONTAINER_ENGINE=docker ./build.sh`). The prebuilt `libusbwire_server.so`
 (arm64-v8a) is committed, so the build only packages it.
 
-The native lib itself comes from the usbwire tree (branch `android-from-fd`):
+The native lib itself comes from the [usbwire](https://github.com/revesis/usbwire)
+tree (v0.6.0+, on `main`); a prebuilt one also ships in each usbwire release
+(`usbwire-<ver>-android-arm64.tar.gz`):
 
 ```
 cargo build --release -p usbwire-server --target aarch64-linux-android
