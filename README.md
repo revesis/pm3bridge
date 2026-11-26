@@ -56,3 +56,8 @@ Rebuild and recommit it when the usbwire server changes.
 
 VID/PID `9ac4:4b8f` is the Iceman/clone PM3; adjust in `MainActivity.java` and
 `res/xml/device_filter.xml` for other devices.
+
+## License
+
+[MIT](LICENSE). The bundled `libusbwire_server.so` is built from
+[usbwire](https://github.com/revesis/usbwire), which is `MIT OR Apache-2.0`.
