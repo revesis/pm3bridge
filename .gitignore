@@ -1,0 +1,14 @@
+# Gradle / AGP build outputs
+.gradle/
+build/
+app/build/
+*.apk
+*.aab
+
+# Machine-specific
+local.properties
+
+# IDE
+.idea/
+*.iml
+.DS_Store
