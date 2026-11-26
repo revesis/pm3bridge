@@ -30,8 +30,9 @@ Requires Android SDK (API 34, build-tools 34) and the prebuilt native lib.
 
 `build.sh` builds the image in `docker/` (JDK 21 + Android SDK 34 + Gradle 8.9)
 and runs Gradle inside it with the repo mounted, so nothing is installed on the
-host. The prebuilt `libusbwire_server.so` (arm64-v8a) is committed, so the build
-only packages it.
+host. It uses **podman or docker** automatically (override with
+`CONTAINER_ENGINE=docker ./build.sh`). The prebuilt `libusbwire_server.so`
+(arm64-v8a) is committed, so the build only packages it.
 
 The native lib itself comes from the usbwire tree (branch `android-from-fd`):
 
