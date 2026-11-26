@@ -2,7 +2,8 @@
 # Builds app-debug.apk without touching the host: JDK 21 + Android SDK (API 34,
 # build-tools 34) + Gradle 8.9. The prebuilt libusbwire_server.so is committed
 # in the repo, so this only has to run the Gradle/AGP build.
-FROM eclipse-temurin:21-jdk-jammy
+# Fully-qualified so podman (strict short-name mode) and docker both resolve it.
+FROM docker.io/library/eclipse-temurin:21-jdk-jammy
 
 ENV ANDROID_SDK_ROOT=/opt/android-sdk \
     ANDROID_HOME=/opt/android-sdk \
