@@ -21,17 +21,26 @@ which exports that one device with `usbwire-server --from-fd`.
 
 Requires Android SDK (API 34, build-tools 34) and the prebuilt native lib.
 
+**Workflow:** develop anywhere; build the APK in a container on the build host.
+
 ```
-# 1. Build the native lib from the usbwire tree (branch android-from-fd):
-#    cargo build --release -p usbwire-server --target aarch64-linux-android
-#    -> copy target/.../libusbwire_server.so to:
-#       app/src/main/jniLibs/arm64-v8a/libusbwire_server.so
-# 2. echo "sdk.dir=/path/to/android-sdk" > local.properties
-# 3. gradle assembleDebug   ->  app/build/outputs/apk/debug/app-debug.apk
+./build.sh                 # docker build + gradle assembleDebug (no host SDK)
+#  -> app/build/outputs/apk/debug/app-debug.apk
 ```
 
-The prebuilt `libusbwire_server.so` (arm64-v8a) is committed so the app builds
-out of the box; rebuild it from the usbwire source when that changes.
+`build.sh` builds the image in `docker/` (JDK 21 + Android SDK 34 + Gradle 8.9)
+and runs Gradle inside it with the repo mounted, so nothing is installed on the
+host. The prebuilt `libusbwire_server.so` (arm64-v8a) is committed, so the build
+only packages it.
+
+The native lib itself comes from the usbwire tree (branch `android-from-fd`):
+
+```
+cargo build --release -p usbwire-server --target aarch64-linux-android
+# copy target/.../libusbwire_server.so -> app/src/main/jniLibs/arm64-v8a/
+```
+
+Rebuild and recommit it when the usbwire server changes.
 
 ## Use
 
